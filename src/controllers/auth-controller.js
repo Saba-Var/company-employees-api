@@ -9,6 +9,6 @@ export const authentication = (req, res) => {
   const user = { email, password }
   const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET)
 
-  res.json({ token: accessToken })
+  res.status(201).json({ token: accessToken })
   return null
 }

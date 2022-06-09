@@ -1,0 +1,49 @@
+openapi: 3.0.0
+info:
+  title: Admin Panel API
+  description: API documentation for Admin Panel API
+  version: 0.1.9
+
+servers:
+  - url: http://localhost:3000
+    description: local server
+  - url: http://producation.app
+    description: production server
+
+paths:
+  /auth:
+    post:
+      tags:
+        - Authentication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  email:
+                    type: string
+                  password:
+                    type: string
+            example:
+              email: sabavar@redberry.ge
+              password: password123
+      responses:
+        '201':
+          description: Returns JWT for valid users.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    password:
+                      type: string
+                  example:
+                    email: sabavar@redberry.ge
+                    password: password123
