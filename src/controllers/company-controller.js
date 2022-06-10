@@ -16,7 +16,7 @@ export const addCompany = async (req, res) => {
       console.log('Company created successfully')
       return res
         .status(201)
-        .send({ message: 'Success! Company created successfully' })
+        .send({ message: 'Success! Company saved successfully' })
     })
     .catch((err) => res.status(404).json({ message: err.message }))
 }

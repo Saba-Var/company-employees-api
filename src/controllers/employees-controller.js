@@ -17,7 +17,7 @@ export const addEmployee = async (req, res) => {
 
   if (notUnique)
     return res.status(400).json({
-      message: `User with this personal number(${personalNumber}) already exists`,
+      message: `Employee with this personal number(${personalNumber}) already exists`,
     })
 
   try {
@@ -37,9 +37,16 @@ export const addEmployee = async (req, res) => {
 
       await newEmployee
         .save()
-        .then(() => {
-          console.log('Employee saved successfully')
-          return res
+        .then(async (employee) => {
+          await Company.findByIdAndUpdate(companyId, {
+            $push: {
+              employees: {
+                _id: mongoose.Types.ObjectId(employee._id),
+              },
+            },
+          })
+
+          res
             .status(201)
             .send({ message: 'Success! Employee saved successfully' })
         })
