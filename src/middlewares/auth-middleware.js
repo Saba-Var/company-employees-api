@@ -7,13 +7,14 @@ const authMiddleware = async (req, res, next) => {
       return res.status(401).json({
         message: 'missing authorization header',
       })
-
-    const verified = jwt.verify(authorization, process.env.ACCESS_TOKEN_SECRET)
+    const token = authorization.trim().split(' ')[1]
+    const verified = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
     if (verified) return next()
   } catch (error) {
     console.log(error)
     return res.status(403).json({ message: 'Token is not valid' })
   }
+  return null
 }
 
 export default authMiddleware
