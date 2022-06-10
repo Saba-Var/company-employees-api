@@ -2,13 +2,13 @@ import { body } from 'express-validator'
 import express from 'express'
 import { authentication } from '../controllers/auth-controller.js'
 
-const authRouter = express.Router()
+const router = express.Router()
 
-authRouter.post(
+router.post(
   '/auth',
   body('email').isEmail(),
   body('password').trim().notEmpty(),
   authentication
 )
 
-export { authRouter }
+export default router

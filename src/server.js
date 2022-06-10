@@ -2,7 +2,7 @@ import dotenv from 'dotenv'
 import express from 'express'
 import { swaggerMiddleware } from './middlewares/index.js'
 import connectToMongo from './config/mongo.js'
-import { authRouter } from './routes/auth.js'
+import authRouter from './routes/auth.js'
 
 const server = express()
 
