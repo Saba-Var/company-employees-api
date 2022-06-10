@@ -7,7 +7,7 @@ const authRouter = express.Router()
 authRouter.post(
   '/auth',
   body('email').isEmail(),
-  body('password').notEmpty(),
+  body('password').trim().notEmpty(),
   authentication
 )
 
