@@ -1,3 +1,4 @@
+import mongoose from 'mongoose'
 import Company from '../models/Company.js'
 
 export const addCompany = async (req, res) => {
@@ -34,6 +35,15 @@ export const getOneCompany = async (req, res) => {
   try {
     const company = await Company.findById(req.body.id)
     return res.status(200).json(company)
+  } catch (error) {
+    return res.status(404).json({ message: error.message })
+  }
+}
+
+export const deleteCompany = async (req, res) => {
+  try {
+    await Company.deleteOne({ _id: mongoose.Types.ObjectId(req.body.id) })
+    return res.status(200).json({ message: 'Company deleted successfully' })
   } catch (error) {
     return res.status(404).json({ message: error.message })
   }
