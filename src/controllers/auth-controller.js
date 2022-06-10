@@ -30,7 +30,7 @@ export const authentication = async (req, res) => {
     })
     .catch((err) => {
       console.log(err)
-      res.status(404).json(err.message)
+      return res.status(404).json(err.message)
     })
 
   return null
