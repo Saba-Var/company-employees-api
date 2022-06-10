@@ -29,3 +29,12 @@ export const getAllCompanies = async (req, res) => {
     return res.status(404).json({ message: error.message })
   }
 }
+
+export const getOneCompany = async (req, res) => {
+  try {
+    const company = await Company.findById(req.body.id)
+    return res.status(200).json(company)
+  } catch (error) {
+    return res.status(404).json({ message: error.message })
+  }
+}
