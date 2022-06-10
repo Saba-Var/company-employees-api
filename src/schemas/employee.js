@@ -38,6 +38,12 @@ const employeeSchema = new Schema({
     trim: true,
     required: 'Position is required',
   },
+
+  companyId: {
+    type: Schema.Types.ObjectId,
+    ref: 'company',
+    required: 'Company id is required',
+  },
 })
 
 export default employeeSchema

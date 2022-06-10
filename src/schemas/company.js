@@ -27,6 +27,8 @@ const companySchema = new Schema({
     trim: true,
     required: 'Company establishment date is required',
   },
+
+  employees: [{ type: Schema.Types.ObjectId, ref: 'employee' }],
 })
 
 export default companySchema
