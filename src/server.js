@@ -4,6 +4,7 @@ import { swaggerMiddleware } from './middlewares/index.js'
 import connectToMongo from './config/mongo.js'
 import authRouter from './routes/auth.js'
 import companyRouter from './routes/company.js'
+import employeeRouter from './routes/employee.js'
 
 const server = express()
 
@@ -14,6 +15,7 @@ server.use(express.json())
 
 server.use(authRouter)
 server.use(companyRouter)
+server.use(employeeRouter)
 server.use('/api-docs', swaggerMiddleware())
 
 server.listen(process.env.SERVER_PORT, () => {
