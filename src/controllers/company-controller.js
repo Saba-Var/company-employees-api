@@ -11,7 +11,7 @@ export const addCompany = async (req, res) => {
       establishmentDate,
     })
     await newUser.save().then(() => {
-      console.log('Company created successfully')
+      console.log('Company saved successfully')
       return res
         .status(201)
         .send({ message: 'Success! Company saved successfully' })
@@ -34,6 +34,7 @@ export const getAllCompanies = async (req, res) => {
 export const getOneCompany = async (req, res) => {
   try {
     const company = await Company.findById(req.body.id)
+    if (!company) return res.status(404).json({ message: 'Company not found' })
     return res.status(200).json(company)
   } catch (error) {
     return res.status(404).json({ message: error.message })
@@ -42,7 +43,10 @@ export const getOneCompany = async (req, res) => {
 
 export const deleteCompany = async (req, res) => {
   try {
-    await Company.deleteOne({ _id: mongoose.Types.ObjectId(req.body.id) })
+    const id = { _id: mongoose.Types.ObjectId(req.body.id) }
+    const company = await Company.findOne(id)
+    if (!company) return res.status(404).json({ message: 'Company not found' })
+    await Company.deleteOne(id)
     return res.status(200).json({ message: 'Company deleted successfully' })
   } catch (error) {
     return res.status(404).json({ message: error.message })
