@@ -2,6 +2,7 @@ import express from 'express'
 import {
   addEmployee,
   oneEmployee,
+  deleteEmployee,
 } from '../controllers/employees-controller.js'
 import { authMiddleware, validateRequestSchema } from '../middlewares/index.js'
 import addEmployeeSchema from '../schemas/add-employee-schema.js'
@@ -23,6 +24,14 @@ router.get(
   idSchema,
   validateRequestSchema,
   oneEmployee
+)
+
+router.delete(
+  '/delete-employee',
+  authMiddleware,
+  idSchema,
+  validateRequestSchema,
+  deleteEmployee
 )
 
 export default router

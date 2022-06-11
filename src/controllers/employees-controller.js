@@ -62,3 +62,16 @@ export const oneEmployee = async (req, res) => {
     return res.status(404).json({ message: error.message })
   }
 }
+
+export const deleteEmployee = async (req, res) => {
+  try {
+    const id = { _id: mongoose.Types.ObjectId(req.body.id) }
+    const employee = await Employee.findOne(id)
+    if (!employee)
+      return res.status(404).json({ message: 'Employee not found' })
+    await Employee.deleteOne(id)
+    return res.status(200).json({ message: 'Employee deleted successfully' })
+  } catch (error) {
+    return res.status(404).json({ message: error.message })
+  }
+}
