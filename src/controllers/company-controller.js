@@ -56,3 +56,29 @@ export const deleteCompany = async (req, res) => {
     return res.status(404).json({ message: error.message })
   }
 }
+
+export const changeCompany = async (req, res) => {
+  try {
+    const { id, name, website, logoUrl, establishmentDate } = req.body
+    const notUnique = await Company.findOne({ name })
+    if (notUnique)
+      return res.status(400).json({
+        message: `Company with name '${name}' already exists! Change company name.`,
+      })
+
+    const company = await Company.findById(id)
+    company.establishmentDate = establishmentDate
+    company.website = website
+    company.logoUrl = logoUrl
+    company.name = name
+    await company.save()
+
+    return res
+      .status(200)
+      .json({ message: 'Company details changed successfully!' })
+  } catch (err) {
+    return res.status(404).json({
+      message: `Company with this id ('${req.body.id}') does not exist!`,
+    })
+  }
+}
