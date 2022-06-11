@@ -35,12 +35,16 @@ export const getAllCompanies = async (req, res) => {
 
 export const getOneCompany = async (req, res) => {
   try {
-    const company = await Company.findById(req.body.id)
-    if (!company) return res.status(404).json({ message: 'Company not found' })
-    return res.status(200).json(company)
+    const { id } = req.body
+    if (!id || !req.body)
+      return res.status(404).json({ message: 'Company id is required' })
+    await Company.findById(id).then((currentCompany) =>
+      res.status(200).json(currentCompany)
+    )
   } catch (error) {
-    return res.status(404).json({ message: error.message })
+    return res.status(404).json({ message: 'Company not found' })
   }
+  return null
 }
 
 export const deleteCompany = async (req, res) => {
