@@ -1,5 +1,6 @@
 import express from 'express'
 import addCompanySchema from '../schemas/add-company-schema.js'
+import companyIdSchema from '../schemas/company-Id-schema.js'
 import {
   addCompany,
   getAllCompanies,
@@ -18,7 +19,19 @@ router.post(
   addCompany
 )
 router.get('/all-company', authMiddleware, getAllCompanies)
-router.get('/one-company', authMiddleware, getOneCompany)
-router.delete('/delete-company', authMiddleware, deleteCompany)
+router.get(
+  '/one-company',
+  authMiddleware,
+  companyIdSchema,
+  validateRequestSchema,
+  getOneCompany
+)
+router.delete(
+  '/delete-company',
+  authMiddleware,
+  companyIdSchema,
+  validateRequestSchema,
+  deleteCompany
+)
 
 export default router

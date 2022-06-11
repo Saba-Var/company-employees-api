@@ -36,8 +36,6 @@ export const getAllCompanies = async (req, res) => {
 export const getOneCompany = async (req, res) => {
   try {
     const { id } = req.body
-    if (!id || !req.body)
-      return res.status(404).json({ message: 'Company id is required' })
     await Company.findById(id).then((currentCompany) =>
       res.status(200).json(currentCompany)
     )
