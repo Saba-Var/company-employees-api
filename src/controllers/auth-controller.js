@@ -4,21 +4,14 @@ import bcrypt from 'bcryptjs'
 import User from '../models/User.js'
 
 export const authentication = async (req, res) => {
-  const errors = validationResult(req)
-
-  if (!errors.isEmpty()) return res.status(401).json({ errors: errors.array() })
-
-  const { email, password } = req.body
-
-  const currentUser = await User.findOne({ email })
-
-  if (!currentUser) {
-    return res.status(404).json({ message: 'User not exist' })
-  }
-
-  bcrypt
-    .compare(password, currentUser.password)
-    .then((isMatch) => {
+  try {
+    const errors = validationResult(req)
+    if (!errors.isEmpty())
+      return res.status(401).json({ errors: errors.array() })
+    const { email, password } = req.body
+    const currentUser = await User.findOne({ email })
+    if (!currentUser) return res.status(404).json({ message: 'User not exist' })
+    bcrypt.compare(password, currentUser.password).then((isMatch) => {
       if (isMatch) {
         const accessToken = jwt.sign(
           { email, password },
@@ -28,10 +21,8 @@ export const authentication = async (req, res) => {
       }
       return res.status(404).json({ message: 'Password did not match' })
     })
-    .catch((err) => {
-      console.log(err)
-      return res.status(404).json(err.message)
-    })
-
+  } catch (error) {
+    return res.status(404).json(error.message)
+  }
   return null
 }
