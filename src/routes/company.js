@@ -8,39 +8,25 @@ import {
   deleteCompany,
   changeCompany,
 } from '../controllers/company-controller.js'
-import { authMiddleware, validateRequestSchema } from '../middlewares/index.js'
+import { validateRequestSchema } from '../middlewares/index.js'
 
 const router = express.Router()
 
+router.get('/all-company', getAllCompanies)
+
+router.get('/one-company', idSchema, validateRequestSchema, getOneCompany)
+
+router.delete('/delete-company', idSchema, validateRequestSchema, deleteCompany)
+
 router.post(
   '/add-company',
-  authMiddleware,
   companyDetailsSchema,
   validateRequestSchema,
   addCompany
 )
 
-router.get('/all-company', authMiddleware, getAllCompanies)
-
-router.get(
-  '/one-company',
-  authMiddleware,
-  idSchema,
-  validateRequestSchema,
-  getOneCompany
-)
-
-router.delete(
-  '/delete-company',
-  authMiddleware,
-  idSchema,
-  validateRequestSchema,
-  deleteCompany
-)
-
 router.put(
   '/change-company',
-  authMiddleware,
   idSchema,
   companyDetailsSchema,
   validateRequestSchema,

@@ -5,11 +5,11 @@ import Company from '../models/Company.js'
 export const addEmployee = async (req, res) => {
   try {
     const {
-      firstName,
-      lastName,
-      startedAt,
-      birthDate,
       personalNumber,
+      birthDate,
+      firstName,
+      startedAt,
+      lastName,
       position,
       id,
     } = req.body
@@ -73,5 +73,43 @@ export const deleteEmployee = async (req, res) => {
     return res.status(200).json({ message: 'Employee deleted successfully' })
   } catch (error) {
     return res.status(404).json({ message: error.message })
+  }
+}
+
+export const changeEmployee = async (req, res) => {
+  try {
+    const {
+      personalNumber,
+      firstName,
+      startedAt,
+      birthDate,
+      companyId,
+      lastName,
+      position,
+      id,
+    } = req.body
+
+    const company = await Company.findById(mongoose.Types.ObjectId(companyId))
+    if (!company)
+      return res.status(404).json({
+        message: `Company with this id '${companyId}' does not exist!`,
+      })
+
+    const employee = await Employee.findById(id)
+    employee.personalNumber = personalNumber
+    employee.firstName = firstName
+    employee.birthDate = birthDate
+    employee.companyId = companyId
+    employee.startedAt = startedAt
+    employee.lastName = lastName
+    employee.position = position
+    await employee.save()
+    return res
+      .status(200)
+      .json({ message: 'Employee details changed successfully!' })
+  } catch (err) {
+    return res.status(404).json({
+      message: err.message,
+    })
   }
 }

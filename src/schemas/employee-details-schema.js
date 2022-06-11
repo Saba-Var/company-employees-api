@@ -1,6 +1,6 @@
 import { check } from 'express-validator'
 
-const addEmployeeSchema = [
+const employeeDetailsSchema = [
   check('firstName').trim().notEmpty().withMessage('First Name is required'),
   check('lastName').trim().notEmpty().withMessage('First Name is required'),
   check('startedAt').isDate().withMessage('Enter date format: yyyy-mm-dd'),
@@ -10,7 +10,7 @@ const addEmployeeSchema = [
     .trim()
     .notEmpty()
     .isLength({ min: 24, max: 24 })
-    .withMessage('Enter valid company id'),
+    .withMessage('Enter valid id'),
   check('personalNumber')
     .trim()
     .notEmpty()
@@ -19,4 +19,4 @@ const addEmployeeSchema = [
     .withMessage('Personal number should be 11 characters long'),
 ]
 
-export default addEmployeeSchema
+export default employeeDetailsSchema

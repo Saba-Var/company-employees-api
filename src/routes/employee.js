@@ -1,37 +1,39 @@
 import express from 'express'
+import employeeDetailsSchema from '../schemas/employee-details-schema.js'
+import idSchema from '../schemas/id-schema.js'
+import companyIdSchema from '../schemas/company-id-schema.js'
 import {
   addEmployee,
   oneEmployee,
   deleteEmployee,
+  changeEmployee,
 } from '../controllers/employees-controller.js'
-import { authMiddleware, validateRequestSchema } from '../middlewares/index.js'
-import addEmployeeSchema from '../schemas/add-employee-schema.js'
-import idSchema from '../schemas/id-schema.js'
+import { validateRequestSchema } from '../middlewares/index.js'
 
 const router = express.Router()
 
+router.get('/one-employee', idSchema, validateRequestSchema, oneEmployee)
+
 router.post(
   '/add-employee',
-  authMiddleware,
-  addEmployeeSchema,
+  employeeDetailsSchema,
   validateRequestSchema,
   addEmployee
 )
 
-router.get(
-  '/one-employee',
-  authMiddleware,
-  idSchema,
-  validateRequestSchema,
-  oneEmployee
-)
-
 router.delete(
   '/delete-employee',
-  authMiddleware,
   idSchema,
   validateRequestSchema,
   deleteEmployee
+)
+
+router.put(
+  '/change-employee',
+  employeeDetailsSchema,
+  companyIdSchema,
+  validateRequestSchema,
+  changeEmployee
 )
 
 export default router
