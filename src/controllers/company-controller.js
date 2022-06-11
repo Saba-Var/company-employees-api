@@ -25,6 +25,8 @@ export const addCompany = async (req, res) => {
 export const getAllCompanies = async (req, res) => {
   try {
     const companies = await Company.find()
+    if (companies.length === 0)
+      return res.status(404).json({ message: 'Company list is empty' })
     return res.status(200).json(companies)
   } catch (error) {
     return res.status(404).json({ message: error.message })
