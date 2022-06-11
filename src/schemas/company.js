@@ -5,7 +5,7 @@ const { Schema } = mongoose
 const companySchema = new Schema({
   name: {
     type: String,
-    required: 'Company name is required',
+    required: true,
     trim: true,
     unique: true,
   },
@@ -13,19 +13,19 @@ const companySchema = new Schema({
   website: {
     type: String,
     trim: true,
-    required: 'Web-Site address is required',
+    required: true,
   },
 
   logoUrl: {
     type: String,
     trim: true,
-    required: 'Company logo url is required',
+    required: true,
   },
 
   establishmentDate: {
     type: Date,
     trim: true,
-    required: 'Company establishment date is required',
+    required: true,
   },
 
   employees: [{ type: Schema.Types.ObjectId, ref: 'employee' }],

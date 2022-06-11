@@ -1,13 +1,9 @@
-import { validationResult } from 'express-validator'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 import User from '../models/User.js'
 
 export const authentication = async (req, res) => {
   try {
-    const errors = validationResult(req)
-    if (!errors.isEmpty())
-      return res.status(401).json({ errors: errors.array() })
     const { email, password } = req.body
     const currentUser = await User.findOne({ email })
     if (!currentUser) return res.status(404).json({ message: 'User not exist' })

@@ -5,44 +5,44 @@ const { Schema } = mongoose
 const employeeSchema = new Schema({
   firstName: {
     type: String,
-    required: 'First Name is required',
+    required: true,
     trim: true,
   },
 
   lastName: {
     type: String,
     trim: true,
-    required: 'Last Name is required',
+    required: true,
   },
 
   startedAt: {
     type: Date,
     trim: true,
-    required: 'This field is required',
+    required: true,
   },
 
   birthDate: {
     type: Date,
     trim: true,
-    required: 'Birth Date is required',
+    required: true,
   },
 
   personalNumber: {
     type: String,
     trim: true,
-    required: 'Personal Number is required',
+    required: true,
   },
 
   position: {
     type: String,
     trim: true,
-    required: 'Position is required',
+    required: true,
   },
 
   companyId: {
     type: Schema.Types.ObjectId,
     ref: 'company',
-    required: 'Company id is required',
+    required: true,
   },
 })
 
