@@ -6,7 +6,11 @@ const addEmployeeSchema = [
   check('startedAt').isDate().withMessage('Enter date format: yyyy-mm-dd'),
   check('birthDate').isDate().withMessage('Enter date format: yyyy-mm-dd'),
   check('position').trim().notEmpty().withMessage('Position is required'),
-  check('id').trim().notEmpty().withMessage('Company Id is required'),
+  check('id')
+    .trim()
+    .notEmpty()
+    .isLength({ min: 24, max: 24 })
+    .withMessage('Enter valid company id'),
   check('personalNumber')
     .trim()
     .notEmpty()

@@ -38,17 +38,15 @@ export const addEmployee = async (req, res) => {
             },
           },
         })
-        res
+        return res
           .status(201)
           .send({ message: 'Success! Employee saved successfully' })
       })
-    } else
-      return res
-        .status(404)
-        .json({ message: `Company with this id (${id}) not found` })
+    }
+    return res
+      .status(404)
+      .json({ message: `Company with this id (${id}) not found` })
   } catch (error) {
     return res.status(404).json({ message: error.message })
   }
-
-  return null
 }
