@@ -4,22 +4,19 @@ import Company from '../models/Company.js'
 export const addCompany = async (req, res) => {
   try {
     const { name, website, logoUrl, establishmentDate } = req.body
-    const newUser = await new Company({
+    await new Company({
       name,
       website,
       logoUrl,
       establishmentDate,
-    })
-    await newUser.save().then(() => {
-      console.log('Company saved successfully')
-      return res
-        .status(201)
-        .send({ message: 'Success! Company saved successfully' })
-    })
+    }).save()
+
+    return res
+      .status(201)
+      .send({ message: 'Success! Company saved successfully' })
   } catch (error) {
     return res.status(404).json({ message: error.message })
   }
-  return null
 }
 
 export const getAllCompanies = async (req, res) => {
@@ -36,13 +33,13 @@ export const getAllCompanies = async (req, res) => {
 export const getOneCompany = async (req, res) => {
   try {
     const { id } = req.body
-    await Company.findById(id).then((currentCompany) =>
-      res.status(200).json(currentCompany)
-    )
+    const currentCompany = await Company.findById(id)
+    if (!currentCompany)
+      return res.status(404).json({ message: 'Company not found' })
+    return res.status(200).json(currentCompany)
   } catch (error) {
-    return res.status(404).json({ message: 'Company not found' })
+    return res.status(404).json({ message: error.message })
   }
-  return null
 }
 
 export const deleteCompany = async (req, res) => {
