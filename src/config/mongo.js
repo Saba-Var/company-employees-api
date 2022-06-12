@@ -8,9 +8,8 @@ const connect = async () => {
       useUnifiedTopology: true,
     })
   } catch (e) {
-    console.log(e)
+    return console.log(e)
   }
-  return null
 }
 
 export default connect
