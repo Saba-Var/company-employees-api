@@ -95,7 +95,13 @@ export const changeEmployee = async (req, res) => {
         message: `Company with this id '${companyId}' does not exist!`,
       })
 
-    const employee = await Employee.findById(id)
+    const employee = await Employee.findById(mongoose.Types.ObjectId(id))
+
+    if (!employee)
+      return res.status(404).json({
+        message: `Employee with this id '${id}' does not exist!`,
+      })
+
     employee.personalNumber = personalNumber
     employee.firstName = firstName
     employee.birthDate = birthDate

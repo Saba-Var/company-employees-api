@@ -8,9 +8,8 @@ const employeeDetailsSchema = [
   check('position').trim().notEmpty().withMessage('Position is required'),
   check('id')
     .trim()
-    .notEmpty()
     .isLength({ min: 24, max: 24 })
-    .withMessage('Enter valid id'),
+    .withMessage('id must be 24 characters long'),
   check('personalNumber')
     .trim()
     .notEmpty()

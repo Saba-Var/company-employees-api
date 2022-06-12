@@ -2,11 +2,9 @@ import { check } from 'express-validator'
 
 const idSchema = [
   check('id')
-    .exists()
     .trim()
-    .notEmpty()
     .isLength({ min: 24, max: 24 })
-    .withMessage('Enter valid id'),
+    .withMessage('id must be 24 characters long'),
 ]
 
 export default idSchema
