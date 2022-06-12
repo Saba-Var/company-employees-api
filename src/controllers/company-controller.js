@@ -4,6 +4,12 @@ import Company from '../models/Company.js'
 export const addCompany = async (req, res) => {
   try {
     const { name, website, logoUrl, establishmentDate } = req.body
+
+    const notUnique = await Company.findOne({ name })
+    if (notUnique)
+      return res
+        .status(400)
+        .json({ message: `Company '${name}' already exists` })
     await new Company({
       name,
       website,
