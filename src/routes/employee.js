@@ -12,7 +12,7 @@ import { validateRequestSchema } from '../middlewares/index.js'
 
 const router = express.Router()
 
-router.get('/one-employee', idSchema, validateRequestSchema, oneEmployee)
+router.post('/one-employee', idSchema, validateRequestSchema, oneEmployee)
 
 router.post(
   '/add-employee',
