@@ -38,10 +38,10 @@ export const addEmployee = async (req, res) => {
             },
           },
         })
-        return res
-          .status(201)
-          .send({ message: 'Success! Employee saved successfully' })
       })
+      return res
+        .status(201)
+        .send({ message: 'Success! Employee saved successfully' })
     }
     return res
       .status(404)
@@ -67,9 +67,24 @@ export const deleteEmployee = async (req, res) => {
   try {
     const id = { _id: mongoose.Types.ObjectId(req.body.id) }
     const employee = await Employee.findOne(id)
+
     if (!employee)
       return res.status(404).json({ message: 'Employee not found' })
+
+    const company = await Company.findOne({ employees: id })
+
+    if (!company) return res.status(404).json({ message: 'Company not found' })
+
+    await Company.updateOne(
+      { employees: id },
+      {
+        $pull: {
+          employees: mongoose.Types.ObjectId(req.body.id),
+        },
+      }
+    )
     await Employee.deleteOne(id)
+    await company.save()
     return res.status(200).json({ message: 'Employee deleted successfully' })
   } catch (error) {
     return res.status(404).json({ message: error.message })
@@ -90,6 +105,7 @@ export const changeEmployee = async (req, res) => {
     } = req.body
 
     const company = await Company.findById(mongoose.Types.ObjectId(companyId))
+
     if (!company)
       return res.status(404).json({
         message: `Company with this id '${companyId}' does not exist!`,

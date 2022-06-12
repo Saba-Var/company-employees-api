@@ -14,9 +14,9 @@ connectToMongo()
 server.use(express.json())
 server.use('/api-docs', swaggerMiddleware())
 
-server.use(authRouter)
+// server.use(authRouter)
 
-server.use(authMiddleware)
+// server.use(authMiddleware)
 
 server.use(companyRouter)
 server.use(employeeRouter)
