@@ -118,6 +118,23 @@ export const changeEmployee = async (req, res) => {
         message: `Employee with this id '${id}' does not exist!`,
       })
 
+    await Company.updateOne(
+      { employees: id },
+      {
+        $pull: {
+          employees: mongoose.Types.ObjectId(req.body.id),
+        },
+      }
+    )
+
+    await Company.findByIdAndUpdate(companyId, {
+      $push: {
+        employees: {
+          _id: mongoose.Types.ObjectId(employee._id),
+        },
+      },
+    })
+
     employee.personalNumber = personalNumber
     employee.firstName = firstName
     employee.birthDate = birthDate
