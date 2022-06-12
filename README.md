@@ -38,7 +38,7 @@
 1\. First of all you need to clone repository from github:
 
 ```sh
-git clone https://github.com/RedberryInternship/add soon...
+git clone https://github.com/RedberryInternship/company-employees-api-Var-Saba.git
 ```
 
 2\. Next step requires install all the dependencies.
