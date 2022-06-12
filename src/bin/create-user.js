@@ -27,17 +27,23 @@ const createUser = () => {
         })
     }
 
-    const newUser = await new User({
-      email,
-      password,
-    })
+    const validEmail = String(email).match(
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    )
 
-    await newUser
-      .save()
-      .then(() => {
-        console.log('user created successfully')
+    if (validEmail) {
+      const newUser = await new User({
+        email,
+        password,
       })
-      .catch((err) => console.error(err.message))
+      await newUser
+        .save()
+        .then(() => {
+          console.log('user created successfully')
+        })
+        .catch((err) => console.error(err.message))
+    } else console.log('Enter valid email')
+
     await mongoose.connection.close()
   })()
 }
