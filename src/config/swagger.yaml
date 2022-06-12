@@ -150,10 +150,8 @@ paths:
       responses:
         '201':
           description: Company details changed successfully.
-        '400':
-          description: Company with requested name already exists.
         '404':
-          description: Company does not exist/not found.
+          description: Not found.
 
   /delete-company:
     delete:
