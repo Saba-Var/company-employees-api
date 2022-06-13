@@ -105,18 +105,12 @@ export const deleteEmployee = async (req, res) => {
 
 export const changeEmployee = async (req, res) => {
   try {
-    const {
-      personalNumber,
-      firstName,
-      startedAt,
-      birthDate,
-      companyId,
-      lastName,
-      position,
-      id,
-    } = req.body
-    const company = await Company.findById(mongoose.Types.ObjectId(companyId))
-    if (!company)
+    const { companyId, id } = req.body
+    const company = await Company.findById(
+      mongoose.Types.ObjectId(companyId)
+    ).select('-__v -employees -_id')
+
+    if (!company && companyId)
       return res.status(404).json({
         message: `Company with this id '${companyId}' does not exist!`,
       })
@@ -127,29 +121,30 @@ export const changeEmployee = async (req, res) => {
         message: `Employee with this id '${id}' does not exist!`,
       })
 
-    await Company.updateOne(
-      { employees: id },
-      {
-        $pull: {
-          employees: mongoose.Types.ObjectId(req.body.id),
-        },
-      }
-    )
-    await Company.findByIdAndUpdate(companyId, {
-      $push: {
-        employees: {
-          _id: mongoose.Types.ObjectId(employee._id),
-        },
-      },
-    })
+    if (companyId) {
+      await Company.updateOne(
+        { employees: id },
+        {
+          $pull: {
+            employees: mongoose.Types.ObjectId(req.body.id),
+          },
+        }
+      )
 
-    employee.personalNumber = personalNumber
-    employee.firstName = firstName
-    employee.birthDate = birthDate
-    employee.companyId = companyId
-    employee.startedAt = startedAt
-    employee.lastName = lastName
-    employee.position = position
+      await Company.findByIdAndUpdate(companyId, {
+        $push: {
+          employees: {
+            _id: mongoose.Types.ObjectId(employee._id),
+          },
+        },
+      })
+      employee.company = company
+    }
+
+    for (const key in req.body) {
+      if (key !== 'id') employee[key] = req.body[key]
+    }
+
     await employee.save()
     return res
       .status(200)

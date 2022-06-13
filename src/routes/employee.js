@@ -1,7 +1,6 @@
 import express from 'express'
 import employeeDetailsSchema from '../schemas/employee-details-schema.js'
 import idSchema from '../schemas/id-schema.js'
-import companyIdSchema from '../schemas/company-id-schema.js'
 import {
   addEmployee,
   oneEmployee,
@@ -34,7 +33,6 @@ router.delete(
 router.put(
   '/change-employee',
   employeeDetailsSchema,
-  companyIdSchema,
   validateRequestSchema,
   changeEmployee
 )
