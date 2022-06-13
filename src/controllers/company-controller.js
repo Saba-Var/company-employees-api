@@ -29,7 +29,7 @@ export const getAllCompanies = async (req, res) => {
   try {
     const companies = await Company.find()
       .select('-__v')
-      .populate('employees', '-__v -worksInCompany')
+      .populate('employees', '-__v -worksInCompanyId')
 
     if (companies.length === 0)
       return res.status(404).json({ message: 'Company list is empty' })
@@ -44,7 +44,7 @@ export const getOneCompany = async (req, res) => {
     const { id } = req.body
     const currentCompany = await Company.findById(id)
       .select('-__v')
-      .populate('employees', '-__v -worksInCompany')
+      .populate('employees', '-__v -worksInCompanyId')
     if (!currentCompany)
       return res.status(404).json({ message: 'Company not found' })
     return res.status(200).json(currentCompany)
