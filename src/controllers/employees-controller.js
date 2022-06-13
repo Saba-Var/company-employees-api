@@ -56,8 +56,7 @@ export const getAllEmployees = async (req, res) => {
       .select('-__v')
       .populate('worksInCompanyId', 'name')
 
-    if (employees.length === 0)
-      return res.status(404).json({ message: 'Employee list is empty' })
+    if (employees.length === 0) return res.status(200).json({})
     return res.status(200).json(employees)
   } catch (error) {
     return res.status(404).json({ message: error.message })
