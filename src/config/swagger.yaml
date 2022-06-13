@@ -14,8 +14,6 @@ components:
 servers:
   - url: http://localhost:3000
     description: local server
-  - url: http://producation.app
-    description: production server
 
 # Authentication
 paths:
@@ -37,7 +35,7 @@ paths:
                   type: string
             example:
               email: example@gmail.com
-              password: 4rf38fj#aws!f$2as
+              password: ''
       responses:
         '201':
           description: JWT token generated successfully.
@@ -81,10 +79,10 @@ paths:
                 establishmentDate:
                   type: string
             example:
-              name: Redberry
-              website: https://redberry.international/
-              logoUrl: https://redberry.international/wp-content/uploads/2022/01/redberrylogo.svg
-              establishmentDate: '2014-01-01'
+              name: Google
+              website: https://google.com
+              logoUrl: https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png
+              establishmentDate: '1998-09-04'
       responses:
         '201':
           description: Company saved successfully.
@@ -110,7 +108,7 @@ paths:
                 id:
                   type: string
             example:
-              id: 62a5ae7308540d6d70b0820b
+              id: ''
       responses:
         '200':
           description: Company details successfully fetched.
@@ -142,11 +140,11 @@ paths:
                 id:
                   type: string
             example:
-              name: Redberry
-              website: https://redberry.international/
-              logoUrl: https://redberry.international/wp-content/uploads/2022/01/redberrylogo.svg
+              id: ''
+              name: Company Name
+              website: https://comany.com
+              logoUrl: https://comany.com/wp-content/uploads/2022/01/companyLogo.svg
               establishmentDate: '2014-01-01'
-              id: 62a5ae7308540d6d70b0820b
       responses:
         '201':
           description: Company details changed successfully.
@@ -170,7 +168,7 @@ paths:
                 id:
                   type: string
             example:
-              id: 62a5ae7308540d6d70b0820b
+              id: ''
       responses:
         '200':
           description: Company deleted successfully.
@@ -227,7 +225,7 @@ paths:
               birthDate: '2002-01-08'
               personalNumber: '12345678910'
               position: Web developer
-              id: 62a37de8c9bc3021399cad31
+              id: ''
       responses:
         '201':
           description: Employee saved successfully.
@@ -253,7 +251,7 @@ paths:
                 id:
                   type: string
             example:
-              id: 62a5ae7308540d6d70b0820b
+              id: ''
       responses:
         '200':
           description: Employee details successfully fetched.
@@ -288,17 +286,17 @@ paths:
                   type: string
                 id:
                   type: string
-                companyId:
+                worksInCompany:
                   type: string
             example:
-              firstName: Saba
-              lastName: Vartasashvili
+              firstName: Employee
+              lastName: superEmployee
               personalNumber: '12345678910'
               startedAt: '2022-01-25'
               birthDate: '2000-09-12'
               position: 'Full stack developer'
-              id: 62a5ae7308540d6d70b0820b
-              companyId: 62a5c32a6a3db4691701dc43
+              id: ''
+              worksInCompany: ''
       responses:
         '201':
           description: Employee details changed successfully.
@@ -322,7 +320,7 @@ paths:
                 id:
                   type: string
             example:
-              id: 62a5ae7308540d6d70b0820b
+              id: ''
       responses:
         '200':
           description: Employee deleted successfully.

@@ -39,7 +39,7 @@ const employeeSchema = new Schema({
     required: true,
   },
 
-  companyId: {
+  worksInCompany: {
     type: Schema.Types.ObjectId,
     ref: 'company',
     required: true,

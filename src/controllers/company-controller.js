@@ -29,7 +29,7 @@ export const getAllCompanies = async (req, res) => {
   try {
     const companies = await Company.find()
       .select('-__v')
-      .populate('employees', '-__v -companyId')
+      .populate('employees', '-__v -worksInCompany')
 
     if (companies.length === 0)
       return res.status(404).json({ message: 'Company list is empty' })
@@ -44,7 +44,7 @@ export const getOneCompany = async (req, res) => {
     const { id } = req.body
     const currentCompany = await Company.findById(id)
       .select('-__v')
-      .populate('employees', '-__v -companyId')
+      .populate('employees', '-__v -worksInCompany')
     if (!currentCompany)
       return res.status(404).json({ message: 'Company not found' })
     return res.status(200).json(currentCompany)
@@ -68,7 +68,6 @@ export const deleteCompany = async (req, res) => {
 export const changeCompany = async (req, res) => {
   try {
     const { id, name, website, logoUrl, establishmentDate } = req.body
-
     const company = await Company.findById(id)
     company.establishmentDate = establishmentDate
     company.website = website

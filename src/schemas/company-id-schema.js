@@ -1,10 +1,10 @@
 import { check } from 'express-validator'
 
-const companyIdSchema = [
-  check('companyId')
+const worksInCompanySchema = [
+  check('worksInCompany')
     .trim()
     .isLength({ min: 24, max: 24 })
     .withMessage('Company id must be 24 characters long'),
 ]
 
-export default companyIdSchema
+export default worksInCompanySchema

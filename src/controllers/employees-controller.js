@@ -18,8 +18,8 @@ export const addEmployee = async (req, res) => {
       return res.status(400).json({
         message: `Employee with this personal number(${personalNumber}) already exists`,
       })
-    const companyId = mongoose.Types.ObjectId(id)
-    const company = await Company.findById(companyId)
+    const worksInCompany = mongoose.Types.ObjectId(id)
+    const company = await Company.findById(worksInCompany)
     if (company) {
       const newEmployee = await new Employee({
         firstName,
@@ -28,10 +28,10 @@ export const addEmployee = async (req, res) => {
         birthDate,
         personalNumber,
         position,
-        companyId,
+        worksInCompany,
       })
       await newEmployee.save().then(async (employee) => {
-        await Company.findByIdAndUpdate(companyId, {
+        await Company.findByIdAndUpdate(worksInCompany, {
           $push: {
             employees: {
               _id: mongoose.Types.ObjectId(employee._id),
@@ -55,7 +55,7 @@ export const getAllEmployees = async (req, res) => {
   try {
     const employees = await Employee.find()
       .select('-__v')
-      .populate('companyId', 'name')
+      .populate('worksInCompany', 'name')
 
     if (employees.length === 0)
       return res.status(404).json({ message: 'Employee list is empty' })
@@ -70,7 +70,7 @@ export const oneEmployee = async (req, res) => {
     const { id } = req.body
     const currentEmployee = await Employee.findById(id)
       .select('-__v')
-      .populate('companyId', '-__v -employees')
+      .populate('worksInCompany', '-__v -employees')
     if (!currentEmployee)
       return res.status(404).json({ message: 'Employee not found' })
     return res.status(200).json(currentEmployee)
@@ -111,15 +111,17 @@ export const changeEmployee = async (req, res) => {
       firstName,
       startedAt,
       birthDate,
-      companyId,
+      worksInCompany,
       lastName,
       position,
       id,
     } = req.body
-    const company = await Company.findById(mongoose.Types.ObjectId(companyId))
+    const company = await Company.findById(
+      mongoose.Types.ObjectId(worksInCompany)
+    )
     if (!company)
       return res.status(404).json({
-        message: `Company with this id '${companyId}' does not exist!`,
+        message: `Company with this id '${worksInCompany}' does not exist!`,
       })
 
     const employee = await Employee.findById(mongoose.Types.ObjectId(id))
@@ -136,7 +138,7 @@ export const changeEmployee = async (req, res) => {
         },
       }
     )
-    await Company.findByIdAndUpdate(companyId, {
+    await Company.findByIdAndUpdate(worksInCompany, {
       $push: {
         employees: {
           _id: mongoose.Types.ObjectId(employee._id),
@@ -147,7 +149,7 @@ export const changeEmployee = async (req, res) => {
     employee.personalNumber = personalNumber
     employee.firstName = firstName
     employee.birthDate = birthDate
-    employee.companyId = companyId
+    employee.worksInCompany = worksInCompany
     employee.startedAt = startedAt
     employee.lastName = lastName
     employee.position = position
