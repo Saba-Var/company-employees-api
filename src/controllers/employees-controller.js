@@ -57,9 +57,7 @@ export const addEmployee = async (req, res) => {
 
 export const getAllEmployees = async (req, res) => {
   try {
-    const employees = await Employee.find()
-      .select('-__v')
-      .populate('companyId', 'name')
+    const employees = await Employee.find().select('-__v')
 
     if (employees.length === 0) return res.status(200).json([])
     return res.status(200).json(employees)
@@ -71,9 +69,7 @@ export const getAllEmployees = async (req, res) => {
 export const oneEmployee = async (req, res) => {
   try {
     const { id } = req.body
-    const currentEmployee = await Employee.findById(id)
-      .select('-__v')
-      .populate('companyId', '-__v -employees')
+    const currentEmployee = await Employee.findById(id).select('-__v')
     if (!currentEmployee)
       return res.status(404).json({ message: 'Employee not found' })
     return res.status(200).json(currentEmployee)
