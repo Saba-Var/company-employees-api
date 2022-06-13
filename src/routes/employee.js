@@ -15,7 +15,7 @@ const router = express.Router()
 
 router.get('/all-employee', getAllEmployees)
 
-router.post('/one-employee', idSchema, validateRequestSchema, oneEmployee)
+router.post('/get-one-employee', idSchema, validateRequestSchema, oneEmployee)
 
 router.post(
   '/add-employee',

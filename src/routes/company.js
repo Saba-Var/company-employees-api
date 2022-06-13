@@ -14,7 +14,7 @@ const router = express.Router()
 
 router.get('/all-company', getAllCompanies)
 
-router.post('/one-company', idSchema, validateRequestSchema, getOneCompany)
+router.post('/get-one-company', idSchema, validateRequestSchema, getOneCompany)
 
 router.delete('/delete-company', idSchema, validateRequestSchema, deleteCompany)
 

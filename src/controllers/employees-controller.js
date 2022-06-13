@@ -69,6 +69,8 @@ export const oneEmployee = async (req, res) => {
   try {
     const { id } = req.body
     const currentEmployee = await Employee.findById(id)
+      .select('-__v')
+      .populate('companyId', '-__v -employees')
     if (!currentEmployee)
       return res.status(404).json({ message: 'Employee not found' })
     return res.status(200).json(currentEmployee)
