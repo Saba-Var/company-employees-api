@@ -8,7 +8,7 @@ const connect = async () => {
       useUnifiedTopology: true,
     })
   } catch (e) {
-    return console.log(e)
+    throw new Error(e.message)
   }
 }
 

@@ -19,13 +19,8 @@ const createUser = () => {
     const email = process.env.USER_EMAIL
     let password
 
-    if (process.env.USER_PASSWORD && email) {
-      await bcrypt
-        .hash(process.env.USER_PASSWORD, 12)
-        .then((hashedPassword) => {
-          password = hashedPassword
-        })
-    }
+    if (process.env.USER_PASSWORD && email)
+      password = await bcrypt.hash(process.env.USER_PASSWORD, 12)
 
     const validEmail = String(email).match(
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -36,12 +31,12 @@ const createUser = () => {
         email,
         password,
       })
-      await newUser
-        .save()
-        .then(() => {
-          console.log('user created successfully')
-        })
-        .catch((err) => console.error(err.message))
+      try {
+        await newUser.save()
+        console.log('user created successfully')
+      } catch (error) {
+        console.log(error.message)
+      }
     } else console.log('Enter valid email')
 
     await mongoose.connection.close()

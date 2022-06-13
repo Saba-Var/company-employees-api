@@ -176,7 +176,6 @@ paths:
           description: Company not found to delete.
 
   # Employee
-
   /all-employee:
     get:
       security:

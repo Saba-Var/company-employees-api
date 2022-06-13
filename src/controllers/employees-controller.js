@@ -13,15 +13,15 @@ export const addEmployee = async (req, res) => {
       position,
       id,
     } = req.body
-    const notUnique = await Employee.findOne({ personalNumber })
-    if (notUnique)
+    const existingEmployee = await Employee.findOne({ personalNumber })
+    if (existingEmployee)
       return res.status(400).json({
         message: `Employee with this personal number(${personalNumber}) already exists`,
       })
     const worksInCompanyId = mongoose.Types.ObjectId(id)
     const company = await Company.findById(worksInCompanyId)
     if (company) {
-      const newEmployee = await new Employee({
+      const newEmployee = await Employee.create({
         firstName,
         lastName,
         startedAt,
@@ -29,7 +29,7 @@ export const addEmployee = async (req, res) => {
         personalNumber,
         position,
         worksInCompanyId,
-      }).save()
+      })
 
       await Company.findByIdAndUpdate(worksInCompanyId, {
         $push: {
@@ -38,8 +38,9 @@ export const addEmployee = async (req, res) => {
           },
         },
       })
+
       return res
-        .status(201)
+        .status(200)
         .send({ message: 'Success! Employee saved successfully' })
     }
     return res
@@ -56,7 +57,7 @@ export const getAllEmployees = async (req, res) => {
       .select('-__v')
       .populate('worksInCompanyId', 'name')
 
-    if (employees.length === 0) return res.status(200).json({})
+    if (employees.length === 0) return res.status(200).json([])
     return res.status(200).json(employees)
   } catch (error) {
     return res.status(404).json({ message: error.message })

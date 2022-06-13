@@ -5,23 +5,25 @@ export const addCompany = async (req, res) => {
   try {
     const { name, website, logoUrl, establishmentDate } = req.body
 
-    const notUnique = await Company.findOne({ name })
-    if (notUnique)
+    const existingCompany = await Company.findOne({ name })
+
+    if (existingCompany)
       return res
         .status(400)
         .json({ message: `Company '${name}' already exists` })
-    await new Company({
+
+    await Company.create({
       name,
       website,
       logoUrl,
       establishmentDate,
-    }).save()
+    })
 
     return res
       .status(201)
       .send({ message: 'Success! Company saved successfully' })
   } catch (error) {
-    return res.status(404).json({ message: error.message })
+    return res.status(500).json({ message: error.message })
   }
 }
 
@@ -31,10 +33,10 @@ export const getAllCompanies = async (req, res) => {
       .select('-__v')
       .populate('employees', '-__v -worksInCompanyId')
 
-    if (companies.length === 0) return res.status(200).json({})
+    if (companies.length === 0) return res.status(200).json([])
     return res.status(200).json(companies)
   } catch (error) {
-    return res.status(404).json({ message: error.message })
+    return res.status(500).json({ message: error.message })
   }
 }
 
@@ -46,9 +48,10 @@ export const getOneCompany = async (req, res) => {
       .populate('employees', '-__v -worksInCompanyId')
     if (!currentCompany)
       return res.status(404).json({ message: 'Company not found' })
+
     return res.status(200).json(currentCompany)
   } catch (error) {
-    return res.status(404).json({ message: error.message })
+    return res.status(500).json({ message: error.message })
   }
 }
 
@@ -60,7 +63,7 @@ export const deleteCompany = async (req, res) => {
     await Company.deleteOne(id)
     return res.status(200).json({ message: 'Company deleted successfully' })
   } catch (error) {
-    return res.status(404).json({ message: error.message })
+    return res.status(500).json({ message: error.message })
   }
 }
 
