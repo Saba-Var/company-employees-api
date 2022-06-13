@@ -46,12 +46,10 @@ export const getOneCompany = async (req, res) => {
     const currentCompany = await Company.findById(id)
       .select('-__v')
       .populate('employees', '-__v -worksInCompanyId')
-    if (!currentCompany)
-      return res.status(404).json({ message: 'Company not found' })
 
     return res.status(200).json(currentCompany)
   } catch (error) {
-    return res.status(500).json({ message: error.message })
+    return res.status(404).json({ message: 'Company not found' })
   }
 }
 
