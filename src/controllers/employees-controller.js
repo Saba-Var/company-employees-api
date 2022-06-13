@@ -19,8 +19,11 @@ export const addEmployee = async (req, res) => {
         message: `Employee with this personal number(${personalNumber}) already exists`,
       })
     const companyId = mongoose.Types.ObjectId(id)
-    const company = await Company.findById(companyId)
-    if (company) {
+    const currentCompany = await Company.findById(companyId).select(
+      '-__v -employees -_id'
+    )
+
+    if (currentCompany) {
       const newEmployee = await Employee.create({
         firstName,
         lastName,
@@ -29,6 +32,7 @@ export const addEmployee = async (req, res) => {
         personalNumber,
         position,
         companyId,
+        company: currentCompany,
       })
 
       await Company.findByIdAndUpdate(companyId, {
@@ -55,7 +59,7 @@ export const getAllEmployees = async (req, res) => {
   try {
     const employees = await Employee.find()
       .select('-__v')
-      .populate('  companyId', 'name')
+      .populate('companyId', 'name')
 
     if (employees.length === 0) return res.status(200).json([])
     return res.status(200).json(employees)
@@ -69,7 +73,7 @@ export const oneEmployee = async (req, res) => {
     const { id } = req.body
     const currentEmployee = await Employee.findById(id)
       .select('-__v')
-      .populate('  companyId', '-__v -employees')
+      .populate('companyId', '-__v -employees')
     if (!currentEmployee)
       return res.status(404).json({ message: 'Employee not found' })
     return res.status(200).json(currentEmployee)

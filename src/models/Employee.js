@@ -44,6 +44,11 @@ const employeeSchema = new Schema({
     ref: 'company',
     required: true,
   },
+
+  company: {
+    type: Object,
+    required: true,
+  },
 })
 
 const Employee = mongoose.model('employee', employeeSchema)
