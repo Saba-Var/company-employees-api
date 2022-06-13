@@ -80,8 +80,8 @@ To see swagger documentation visit [localhost:3000/api-docs/](http://localhost:3
 ## Project Structure
 
 ```bash
-├─── readme  # readme assets
-├─── src     # project source codes
+├─── readme
+├─── src
 │    ├── bin
 │    ├── config
 │    ├── controllers
@@ -89,12 +89,12 @@ To see swagger documentation visit [localhost:3000/api-docs/](http://localhost:3
 │    ├── models
 │    ├── routes
 │    └── schemas
-- .env                # environmental variables file
-- .eslintrc.json      # eslint config file
-- .gitignore          # gitignore config file
-- .prettierrc.json    # prettier config file
-- package.json        # dependency manager configurations
-- README.md           # project readme file
+- .env
+- .eslintrc.json
+- .gitignore
+- .prettierrc.json
+- package.json
+- README.md
 
 
 ```
