@@ -178,6 +178,20 @@ paths:
           description: Company not found to delete.
 
   # Employee
+
+  /all-employee:
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Employee
+      description: Fetch list of all employee
+      responses:
+        '200':
+          description: Employees's list successfully fetched.
+        '404':
+          description: Employees's list not found.
+
   /add-employee:
     post:
       security:

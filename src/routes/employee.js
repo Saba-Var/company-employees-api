@@ -7,10 +7,13 @@ import {
   oneEmployee,
   deleteEmployee,
   changeEmployee,
+  getAllEmployees,
 } from '../controllers/employees-controller.js'
 import { validateRequestSchema } from '../middlewares/index.js'
 
 const router = express.Router()
+
+router.get('/all-employee', getAllEmployees)
 
 router.post('/one-employee', idSchema, validateRequestSchema, oneEmployee)
 
