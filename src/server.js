@@ -22,5 +22,7 @@ server.use(companyRouter)
 server.use(employeeRouter)
 
 server.listen(process.env.SERVER_PORT, () => {
-  console.log(`server listening on port ${process.env.SERVER_PORT}`)
+  console.log(
+    `server listening on port http://localhost:${process.env.SERVER_PORT}`
+  )
 })
