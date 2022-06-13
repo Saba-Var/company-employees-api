@@ -27,9 +27,9 @@
 - <img src="readme/assets/Express.png" height="25" style="position: relative; top: 4px" /> [Express @4.18.1](https://expressjs.com/) - Fast, unopinionated, minimalist web framework for Node.js
 - <img src="readme/assets/MongoDb.png" height="25" style="position: relative; top: 4px" /> [MongoDB](https://www.mongodb.com/) - Open source NoSQL database management program
 - <img src="readme/assets/Mongoose.png" height="25" style="position: relative; top: 4px" /> [mongoose @6.3.6](https://mongoosejs.com/) - elegant mongodb object modeling for node.js
-- <img src="readme/assets/ExpressValidator.png" height="25" style="position: relative; top: 4px" /> [express-validator @6.14.1](https://express-validator.github.io/docs/) - Set of express.js middlewares that wraps validator.js validator and sanitizer functions
-- <img src="readme/assets/JsonWebToken.png" height="25" style="position: relative; top: 4px" /> [JSON Web Token @8.5.1](https://jwt.io/) - Industry standard RFC 7519 method for representing claims securely between two parties
-- <img src="readme/assets/Swagger.png" height="25" style="position: relative; top: 4px" /> [Swagger UI Express @4.4.0](https://www.npmjs.com/package/swagger-ui-express) - Allows you to serve auto-generated swagger-ui generated API docs from express
+- <img src="readme/assets/ExpressValidator.png" height="25" style="position: relative; top: 4px" /> [express-validator @6.14.1](https://express-validator.github.io/docs/) - express.js middlewares that wraps validator.js validator and sanitizer functions
+- <img src="readme/assets/JsonWebToken.png" height="25" style="position: relative; top: 4px" /> [JSON Web Token @8.5.1](https://jwt.io/) - RFC 7519 method for representing claims securely between two parties
+- <img src="readme/assets/Swagger.png" height="25" style="position: relative; top: 4px" /> [Swagger UI Express @4.4.0](https://www.npmjs.com/package/swagger-ui-express) - Serve auto-generated swagger-ui generated API docs from express
 
 #
 
