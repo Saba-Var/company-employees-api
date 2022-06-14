@@ -16,20 +16,26 @@
 
 ## Prerequisites
 
-- <img src="readme/assets/NodeJs.png" width="40" style="position: relative; top: 8px" /> _Node JS @12.X and up_
-- <img src="readme/assets/Npm.png" width="40" style="position: relative; top: 4px" /> _npm @6 and up_
+- <img style="padding-right:10px;" align="left"  src="readme/assets/NodeJs.png"   height="22"/> <p>_Node JS @12.X and up_</p>
+- <img style="padding-right:10px;" align="left"  src="readme/assets/Npm.png"   height="20"/> <p>_npm @6 and up_</p>
 
 #
 
 ## Tech Stack
 
-- <img src="readme/assets/NodeJs.png" height="25" style="position: relative; top: 4px" /> [NodeJS @16.15.1](https://nodejs.org/en/) - JavaScript runtime built on Chrome's V8 JavaScript engine
-- <img src="readme/assets/Express.png" height="25" style="position: relative; top: 4px" /> [Express @4.18.1](https://expressjs.com/) - Fast, unopinionated, minimalist web framework for Node.js
-- <img src="readme/assets/MongoDb.png" height="25" style="position: relative; top: 4px" /> [MongoDB](https://www.mongodb.com/) - Open source NoSQL database management program
-- <img src="readme/assets/Mongoose.png" height="25" style="position: relative; top: 4px" /> [mongoose @6.3.6](https://mongoosejs.com/) - elegant mongodb object modeling for node.js
-- <img src="readme/assets/ExpressValidator.png" height="25" style="position: relative; top: 4px" /> [express-validator @6.14.1](https://express-validator.github.io/docs/) - express.js middlewares that wraps validator.js validator and sanitizer functions
-- <img src="readme/assets/JsonWebToken.png" height="25" style="position: relative; top: 4px" /> [JSON Web Token @8.5.1](https://jwt.io/) - RFC 7519 method for representing claims securely between two parties
-- <img src="readme/assets/Swagger.png" height="25" style="position: relative; top: 4px" /> [Swagger UI Express @4.4.0](https://www.npmjs.com/package/swagger-ui-express) - Serve auto-generated swagger-ui generated API docs from express
+- <img style="padding-right:10px;" align="left"  src="readme/assets/NodeJs.png"   height="25"/> <p><a href="https://nodejs.org/en/" target="_blank">[NodeJS @16.15.1]</a> - JavaScript runtime built on Chrome's V8 JavaScript engine<p/>
+
+- <img style="padding-right:10px;" align="left"  src="readme/assets/Express.png"   height="25"/> <p><a href="https://expressjs.com/" target="_blank">[Express @4.18.1]</a> - Fast, unopinionated, minimalist web framework for Node.js<p/>
+
+- <img style="padding-right:10px;" align="left"  src="readme/assets/MongoDb.png"   height="25"/> <p><a href="https://www.mongodb.com/" target="_blank">[MongoDB]</a> - Open source NoSQL database management program<p/>
+
+- <img style="padding-right:10px;" align="left"  src="readme/assets/Mongoose.png"   height="25"/> <p><a href="https://mongoosejs.com/" target="_blank">[mongoose @6.3.6]</a> - elegant mongodb object modeling for node.js<p/>
+
+- <img style="padding-right:10px;" align="left"  src="readme/assets/ExpressValidator.png"   height="25"/> <p><a href="https://express-validator.github.io/docs/" target="_blank">[express-validator @6.14.1]</a> - express.js middlewares that wraps validator.js validator and sanitizer functions<p/>
+
+- <img style="padding-right:10px;" align="left"  src="readme/assets/JsonWebToken.png"   height="25"/> <p><a href="https://jwt.io/" target="_blank">[JSON Web Token @8.5.1]</a> - RFC 7519 method for representing claims securely between two parties<p/>
+
+- <img style="padding-right:10px;" align="left"  src="readme/assets/Swagger.png"   height="25"/> <p><a href="https://www.npmjs.com/package/swagger-ui-express" target="_blank">[Swagger UI Express @4.4.0]</a> - Serve auto-generated swagger-ui generated API docs from express<p/>
 
 #
 
