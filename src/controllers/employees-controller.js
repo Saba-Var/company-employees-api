@@ -105,6 +105,7 @@ export const deleteEmployee = async (req, res) => {
 export const changeEmployee = async (req, res) => {
   try {
     const { companyId, id } = req.body
+
     const company = await Company.findById(
       mongoose.Types.ObjectId(companyId)
     ).select('-__v -employees -_id')

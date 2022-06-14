@@ -1,5 +1,6 @@
 import express from 'express'
 import companyDetailsSchema from '../schemas/company-details-schema.js'
+import changeCompanySchema from '../schemas/change-company-schema.js'
 import idSchema from '../schemas/id-schema.js'
 import {
   addCompany,
@@ -28,7 +29,7 @@ router.post(
 router.put(
   '/change-company',
   idSchema,
-  companyDetailsSchema,
+  changeCompanySchema,
   validateRequestSchema,
   changeCompany
 )

@@ -46,10 +46,11 @@ export const getOneCompany = async (req, res) => {
     const currentCompany = await Company.findById(id)
       .select('-__v')
       .populate('employees', '-__v -companyId -company')
-
+    if (!currentCompany)
+      return res.status(404).json({ message: 'Company not found' })
     return res.status(200).json(currentCompany)
   } catch (error) {
-    return res.status(404).json({ message: 'Company not found' })
+    return res.status(422).json({ message: 'id is invalid' })
   }
 }
 
@@ -67,20 +68,21 @@ export const deleteCompany = async (req, res) => {
 
 export const changeCompany = async (req, res) => {
   try {
-    const { id, name, website, logoUrl, establishmentDate } = req.body
-    const company = await Company.findById(id)
-    company.establishmentDate = establishmentDate
-    company.website = website
-    company.logoUrl = logoUrl
-    company.name = name
-    await company.save()
+    const { id } = req.body
 
+    const company = await Company.findById(id).select('-employees -__v')
+
+    for (const key in req.body) {
+      if (key !== 'id') company[key] = req.body[key]
+    }
+
+    await company.save()
     return res
       .status(200)
       .json({ message: 'Company details changed successfully!' })
   } catch (err) {
     return res.status(404).json({
-      message: err.message,
+      message: 'Company not found',
     })
   }
 }

@@ -1,6 +1,6 @@
 import { check } from 'express-validator'
 
-const employeeOptionalDetailsSchema = [
+const changeEmployeeSchema = [
   check('firstName')
     .optional()
     .trim()
@@ -42,4 +42,4 @@ const employeeOptionalDetailsSchema = [
     .withMessage('Company id must be 24 characters long'),
 ]
 
-export default employeeOptionalDetailsSchema
+export default changeEmployeeSchema
