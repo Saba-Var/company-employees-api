@@ -31,7 +31,7 @@ export const getAllCompanies = async (req, res) => {
   try {
     const companies = await Company.find()
       .select('-__v')
-      .populate('employees', '-__v -companyId')
+      .populate('employees', '-__v -companyId -company')
 
     if (companies.length === 0) return res.status(200).json([])
     return res.status(200).json(companies)
