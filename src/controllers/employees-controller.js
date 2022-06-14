@@ -73,7 +73,7 @@ export const oneEmployee = async (req, res) => {
       return res.status(404).json({ message: 'Employee not found' })
     return res.status(200).json(currentEmployee)
   } catch (error) {
-    return res.status(404).json({ message: error.message })
+    return res.status(422).json({ message: 'id format is invalid' })
   }
 }
 
