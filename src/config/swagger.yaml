@@ -91,7 +91,7 @@ paths:
         '404':
           description: Company save failed.
         '422':
-          description: Request validation errors.
+          description: Unprocessed Entity
 
   /get-one-company:
     post:
@@ -117,7 +117,7 @@ paths:
         '404':
           description: Company not found.
         '422':
-          description: Request validation errors.
+          description: Unprocessed Entity
 
   /change-company:
     put:
@@ -155,7 +155,7 @@ paths:
         '404':
           description: Not found.
         '422':
-          description: Request validation errors.
+          description: Unprocessed Entity
 
   /delete-company:
     delete:
@@ -181,7 +181,7 @@ paths:
         '404':
           description: Company not found to delete.
         '422':
-          description: Request validation errors.
+          description: Unprocessed Entity
 
   # Employee
   /all-employee:
@@ -241,7 +241,7 @@ paths:
         '404':
           description: Company not found.
         '422':
-          description: Request validation errors.
+          description: Unprocessed Entity
 
   /get-one-employee:
     post:
@@ -267,7 +267,7 @@ paths:
         '404':
           description: Employee not found
         '422':
-          description: Request validation errors.
+          description: Unprocessed Entity
 
   /change-employee:
     put:
@@ -314,7 +314,7 @@ paths:
         '404':
           description: Not found.
         '422':
-          description: Request validation errors.
+          description: Unprocessed Entity
 
   /delete-employee:
     delete:
@@ -340,4 +340,4 @@ paths:
         '404':
           description: Not found.
         '422':
-          description: Request validation errors.
+          description: Unprocessed Entity
