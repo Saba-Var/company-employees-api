@@ -58,7 +58,6 @@ export const addEmployee = async (req, res) => {
 export const getAllEmployees = async (req, res) => {
   try {
     const employees = await Employee.find().select('-__v')
-
     if (employees.length === 0) return res.status(200).json([])
     return res.status(200).json(employees)
   } catch (error) {

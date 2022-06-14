@@ -45,7 +45,7 @@ export const getOneCompany = async (req, res) => {
     const { id } = req.body
     const currentCompany = await Company.findById(id)
       .select('-__v')
-      .populate('employees', '-__v -companyId')
+      .populate('employees', '-__v -companyId -company')
 
     return res.status(200).json(currentCompany)
   } catch (error) {

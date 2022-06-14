@@ -16,10 +16,6 @@ const employeeDetailsSchema = [
     .withMessage('Personal number is required')
     .isLength({ min: 11, max: 11 })
     .withMessage('Personal number should be 11 characters long'),
-  check('companyId')
-    .trim()
-    .isLength({ min: 24, max: 24 })
-    .withMessage('Company id must be 24 characters long'),
 ]
 
 export default employeeDetailsSchema
