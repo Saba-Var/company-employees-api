@@ -31,7 +31,7 @@
 
 - <img style="padding-right:10px;" align="left"  src="readme/assets/Mongoose.png"   height="25"/> <p><a href="https://mongoosejs.com/" target="_blank">[mongoose @6.3.6]</a> - elegant mongodb object modeling for node.js<p/>
 
-- <img style="padding-right:10px;" align="left"  src="readme/assets/ExpressValidator.png"   height="25"/> <p><a href="https://express-validator.github.io/docs/" target="_blank">[express-validator @6.14.1]</a> - express.js middlewares that wraps validator.js validator and sanitizer functions<p/>
+- <img style="padding-right:10px;" align="left"  src="readme/assets/ExpressValidator.png"   height="25"/> <p><a href="https://express-validator.github.io/docs/" target="_blank">[express-validator @6.14.1]</a> - Middlewares that wraps validator.js validator and sanitizer functions<p/>
 
 - <img style="padding-right:10px;" align="left"  src="readme/assets/JsonWebToken.png"   height="25"/> <p><a href="https://jwt.io/" target="_blank">[JSON Web Token @8.5.1]</a> - RFC 7519 method for representing claims securely between two parties<p/>
 
