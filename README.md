@@ -1,5 +1,6 @@
 <h1>Admin Panel API</h1>
 <p>Using the Admin Panel API you can add / modify / read / delete companies and their employees</p>
+Production URL - <a href="https://employee-companies-api.sabavar.redberryinternship.ge/" target="_blank">employee-companies-api.sabavar.redberryinternship.ge</a>
 
 ---
 
