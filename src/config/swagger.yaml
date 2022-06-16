@@ -14,6 +14,8 @@ components:
 servers:
   - url: http://localhost:3000
     description: local server
+  - url: https://employee-companies-api.sabavar.redberryinternship.ge/
+    description: production server
 
 # Authentication
 paths:
