@@ -70,8 +70,10 @@ cp .env.example .env
 
 ```sh
 MONGO_DATABASE=adminPanel
+MONGO_PROTOCOL=mongodb
 MONGO_HOST=localhost
 MONGO_PORT=27017
+MONGO_CLUSTER=''
 
 SERVER_PORT=3000
 
