@@ -5,7 +5,7 @@
   "main": "src/server.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon ./src/server.js",
+    "dev": "node ./src/server.js",
     "start": "nodemon --experimental-modules --es-module-specifier-resolution=node src/server.js",
     "user:create": "node ./src/bin/create-user.js"
   },
