@@ -1,8 +1,30 @@
 import mongoose from 'mongoose'
 
+const generateLocalMongoURL = () => {
+  const { MONGO_PROTOCOL, MONGO_HOST, MONGO_PORT, MONGO_DATABASE } = process.env
+  return `${MONGO_PROTOCOL}://${MONGO_HOST}:${MONGO_PORT}/${MONGO_DATABASE}`
+}
+
+const generateAtlasMongoURL = () => {
+  const {
+    MONGO_PROTOCOL,
+    MONGO_USER,
+    MONGO_PASSWORD,
+    MONGO_HOST,
+    MONGO_DATABASE,
+  } = process.env
+
+  return `${MONGO_PROTOCOL}://${MONGO_USER}:${MONGO_PASSWORD}@${MONGO_HOST}/${MONGO_DATABASE}`
+}
+
+const shouldConnectToLocalDatabase = () =>
+  process.env.MONGO_PROTOCOL === 'mongodb'
+
 const connect = async () => {
   try {
-    const connectionURL = `${process.env.MONGO_PROTOCOL}://${process.env.MONGO_HOST}:${process.env.MONGO_PORT}${process.env.MONGO_CLUSTER}/${process.env.MONGO_DATABASE}`
+    const connectionURL = shouldConnectToLocalDatabase()
+      ? generateLocalMongoURL()
+      : generateAtlasMongoURL()
 
     return mongoose.connect(connectionURL, {
       useNewUrlParser: true,
