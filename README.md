@@ -1,19 +1,23 @@
 <h1>Admin Panel API</h1>
 <p>Using the Admin Panel API you can add / modify / read / delete companies and their employees</p>
-Production URL - <a href="https://employee-companies-api.sabavar.redberryinternship.ge/" target="_blank">employee-companies-api.sabavar.redberryinternship.ge</a>
 
----
 
 #
 
 ## Table of Contents
 
-- [Table of Contents](#table-of-contents)
-- [Prerequisites](#prerequisites)
-- [Tech Stack](#tech-stack)
-- [Getting Started](#getting-started)
-- [Project Structure](#project-structure)
-- [Resources](#resources)
+- [](#)
+  - [Table of Contents](#table-of-contents)
+  - [Prerequisites](#prerequisites)
+- [](#-1)
+  - [Tech Stack](#tech-stack)
+- [](#-2)
+  - [Getting Started](#getting-started)
+- [](#-3)
+- [](#-4)
+  - [Project Structure](#project-structure)
+- [](#-5)
+  - [Resources](#resources)
 
 ## Prerequisites
 
