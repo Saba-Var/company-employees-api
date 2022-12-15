@@ -8,16 +8,18 @@
 
 - [](#)
   - [Table of Contents](#table-of-contents)
-  - [Prerequisites](#prerequisites)
 - [](#-1)
-  - [Tech Stack](#tech-stack)
+  - [Prerequisites](#prerequisites)
 - [](#-2)
-  - [Getting Started](#getting-started)
+  - [Tech Stack](#tech-stack)
 - [](#-3)
+  - [Getting Started](#getting-started)
 - [](#-4)
   - [Project Structure](#project-structure)
 - [](#-5)
   - [Resources](#resources)
+
+#
 
 ## Prerequisites
 
@@ -49,7 +51,7 @@
 1\. First of all you need to clone repository from github:
 
 ```sh
-git clone https://github.com/RedberryInternship/company-employees-api-Var-Saba.git
+git clone https://github.com/Saba-Var/company-employees-api.git
 ```
 
 2\. Next step requires install all the dependencies
@@ -101,7 +103,6 @@ npm run user:create
 
 To see swagger documentation visit [localhost:3000/api-docs/](http://localhost:3000/api-docs/)
 
-#
 
 #
 
